@@ -1,0 +1,27 @@
+{
+  "name": "qweather",
+  "version": "3.0.0",
+  "description": "和风天气统一 CLI：天气（新版经纬度 API /weather/v1/*，1km 精度）+ 空气质量 v1 + 分钟降水 + 灾害预警 + 生活指数 + 天文（日出日落/月相）+ GeoAPI + 控制台用量。支持 --pretty 人类可读输出与 --normalize 跨版本字段归一。",
+  "main": "scripts/qweather.js",
+  "bin": {
+    "qweather": "scripts/qweather.js"
+  },
+  "scripts": {
+    "test": "node scripts/qweather.js help"
+  },
+  "keywords": [
+    "qweather",
+    "weather",
+    "air-quality",
+    "astronomy",
+    "jwt"
+  ],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "jose": "^6.2.2"
+  }
+}

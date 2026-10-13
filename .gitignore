@@ -1,0 +1,7 @@
+node_modules/
+*.log
+
+# 运行时缓存(GeoAPI 结果,机器本地、可重新生成)
+scripts/geo_cache.json
+
+.DS_Store
