@@ -3,7 +3,7 @@
 //
 // 2026-10-13 重构要点：
 // 1) 缓存条目带 TTL（默认 30 天）。和风官方明确禁止无限期缓存 GeoAPI 数据。
-// 2) 精确同名优先：查 "长沙县" 不应命中 "长沙"。原实现无条件取 location[0]。
+// 2) 精确同名优先：查 "朝阳区" 不应命中 "北京"。原实现无条件取 location[0]。
 // 3) 原子写入（临时文件 + rename），避免并发进程写坏 JSON。
 // 4) 保留 CITY_ID_MAP 冷启动，但标为 deprecated —— 新版天气接口走经纬度，不再依赖 LocationID。
 
@@ -20,7 +20,7 @@ function loadCache() {
     if (!fs.existsSync(CACHE_FILE)) return { __v: 2, entries: {} };
     const raw = JSON.parse(fs.readFileSync(CACHE_FILE, 'utf8'));
     if (raw && raw.__v === 2 && raw.entries) return raw;
-    // 旧版扁平格式 { "长沙": {...} }：缺少 fetchedAt/record 包装，永远命不中，
+    // 旧版扁平格式 { "北京": {...} }：缺少 fetchedAt/record 包装，永远命不中，
     // 直接丢弃并落盘，避免死条目无限堆积。
     if (raw && typeof raw === 'object') return { __v: 2, entries: {} };
   } catch {}

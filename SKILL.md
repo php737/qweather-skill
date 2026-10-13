@@ -1,6 +1,6 @@
 ---
 name: qweather
-description: "和风天气查询：实时天气、7/15/30天预报、逐小时、空气质量AQI、PM2.5、分钟级降水、灾害预警、生活指数、日出日落与月相。触发词:查天气、空气质量、PM2.5、下雨、温度、降温、紫外线、长沙天气、日落时间、月相。"
+description: "和风天气查询：实时天气、7/15/30天预报、逐小时、空气质量AQI、PM2.5、分钟级降水、灾害预警、生活指数、日出日落与月相。触发词:查天气、空气质量、PM2.5、下雨、温度、降温、紫外线、武汉天气、日落时间、月相。"
 metadata:
   {
     "openclaw":
@@ -124,11 +124,11 @@ QW=~/.openclaw/skills/qweather/scripts/qweather.js
 一次并发拉全：**天气 + 空气质量 + 分钟降水 + 24h 逐小时 + 灾害预警**。
 
 ```bash
-node $QW combined --city 长沙 --pretty                    # 最常用
-node $QW combined --city 长沙 --type 7d --pretty           # 7 天预报
-node $QW combined --city 长沙 --indices 2,3,5 --pretty     # 带上洗车/穿衣/紫外线指数
-node $QW combined --city 长沙 --no-hourly --no-minutely     # 按需裁掉
-node $QW combined --city 长沙 --no-astro                    # 不要日出日落/月亮段
+node $QW combined --city 武汉 --pretty                    # 最常用
+node $QW combined --city 武汉 --type 7d --pretty           # 7 天预报
+node $QW combined --city 武汉 --indices 2,3,5 --pretty     # 带上洗车/穿衣/紫外线指数
+node $QW combined --city 武汉 --no-hourly --no-minutely     # 按需裁掉
+node $QW combined --city 武汉 --no-astro                    # 不要日出日落/月亮段
 node $QW combined --lat 39.92 --lon 116.41 --pretty        # 直接给坐标
 ```
 
@@ -145,39 +145,39 @@ node $QW combined --lat 39.92 --lon 116.41 --pretty        # 直接给坐标
 ### 天气
 
 ```bash
-node $QW weather now    --city 长沙 --pretty                # 默认带日出日落/月相
-node $QW weather hourly --city 长沙 --hours 24 --pretty
-node $QW weather daily  --city 长沙 --days 10 --pretty     # 自带 astro，零额外开销
-node $QW weather now    --city 长沙 --no-astro --pretty    # 不要天文段
-node $QW weather 7d     --city 长沙 --pretty
-node $QW weather 15d    --city 长沙 --pretty     # 旧版 v7
-node $QW weather 30d    --city 长沙 --pretty     # 旧版 v7
+node $QW weather now    --city 武汉 --pretty                # 默认带日出日落/月相
+node $QW weather hourly --city 武汉 --hours 24 --pretty
+node $QW weather daily  --city 武汉 --days 10 --pretty     # 自带 astro，零额外开销
+node $QW weather now    --city 武汉 --no-astro --pretty    # 不要天文段
+node $QW weather 7d     --city 武汉 --pretty
+node $QW weather 15d    --city 武汉 --pretty     # 旧版 v7
+node $QW weather 30d    --city 武汉 --pretty     # 旧版 v7
 ```
 
 ### 天文（日出日落 / 月相）
 
 ```bash
-node $QW astro both --city 长沙 --pretty
-node $QW astro sun  --city 长沙 --date 20261020 --pretty   # 未来 60 天内任意一天
-node $QW astro moon --city 长沙 --pretty
+node $QW astro both --city 武汉 --pretty
+node $QW astro sun  --city 武汉 --date 20261020 --pretty   # 未来 60 天内任意一天
+node $QW astro moon --city 武汉 --pretty
 ```
 
 ### 空气质量（需经纬度，`--city` 会自动解析）
 
 ```bash
-node $QW air current --city 长沙 --pretty
-node $QW air hourly  --city 长沙 --local-time true
-node $QW air daily   --city 长沙
+node $QW air current --city 武汉 --pretty
+node $QW air hourly  --city 武汉 --local-time true
+node $QW air daily   --city 武汉
 node $QW air station --station-id P53763
 ```
 
 ### 分钟降水 / 预警 / 生活指数
 
 ```bash
-node $QW minutely --city 长沙 --pretty       # 未来 2 小时，每 5 分钟
-node $QW warning  --city 长沙 --pretty       # 灾害预警（默认本地时区）
-node $QW indices 1d --city 长沙 --type 2,3,5 --pretty
-node $QW indices 3d --city 长沙 --type 5,9
+node $QW minutely --city 武汉 --pretty       # 未来 2 小时，每 5 分钟
+node $QW warning  --city 武汉 --pretty       # 灾害预警（默认本地时区）
+node $QW indices 1d --city 武汉 --type 2,3,5 --pretty
+node $QW indices 3d --city 武汉 --type 5,9
 ```
 
 **生活指数 ID 速查**（中国 16 项，海外仅 1/2/5/4）：
@@ -195,9 +195,9 @@ node $QW indices 3d --city 长沙 --type 5,9
 ### GeoAPI / 用量
 
 ```bash
-node $QW geo lookup --city 长沙县            # 单个
-node $QW geo lookup --city 长沙 --list       # 全部候选（查重名用）
-node $QW geo lookup --city 长沙 --refresh    # 绕过缓存
+node $QW geo lookup --city 武汉县            # 单个
+node $QW geo lookup --city 武汉 --list       # 全部候选（查重名用）
+node $QW geo lookup --city 武汉 --refresh    # 绕过缓存
 node $QW geo top --city 101010100
 node $QW usage                              # 近 24h 请求量（需控制台授权）
 ```
@@ -239,7 +239,7 @@ H1 标题下用大字突出「天气 + 温度 + 体感」，关键指标放紧�
 
 ### 字段要点
 
-- **地点**：用 `adm1`（省级）避免「长沙县 · 长沙」这种重叠；直辖市 `adm1 == name` 时不重复
+- **地点**：用 `adm1`（省级）避免「武汉县 · 武汉」这种重叠；直辖市 `adm1 == name` 时不重复
 - **时间**：已按 `localTime` 返回本地时间，**直接展示即可**，不要再做时区换算
 - **AQI**：取 `indexes[0]`；`primaryPollutant` 为空时统一写 `—`
 - **预警**：`headline` 截断 60 字、`instruction` 截断 90 字；无预警整段省略

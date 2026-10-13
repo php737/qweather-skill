@@ -86,7 +86,7 @@ export QWEATHER_PRIVATE_KEY_PATH="/path/to/ed25519.key"
 ### 3. 验证
 
 ```bash
-node scripts/qweather.js weather now --city 长沙 --pretty
+node scripts/qweather.js weather now --city 武汉 --pretty
 ```
 
 > 💡 `usage`（控制台用量）需要账号所有者在控制台为该凭据单独开通权限，否则返回空 body 并提示。
@@ -96,13 +96,13 @@ node scripts/qweather.js weather now --city 长沙 --pretty
 ```bash
 QW=scripts/qweather.js
 
-node $QW combined --city 长沙 --pretty              # 天气+空气+分钟降水+逐小时+预警（一条命令全拉）
-node $QW weather 7d --city 长沙 --pretty             # 7 天预报
-node $QW weather now --city 长沙 --pretty            # 实时天气
-node $QW air current --city 长沙 --pretty            # 空气质量
-node $QW astro both --city 长沙 --pretty             # 日出日落 / 月相
-node $QW indices 1d --city 长沙 --type 2,3,5 --pretty # 洗车/穿衣/紫外线
-node $QW geo lookup --city 长沙 --list                # 城市候选（重名时先查这个）
+node $QW combined --city 武汉 --pretty              # 天气+空气+分钟降水+逐小时+预警（一条命令全拉）
+node $QW weather 7d --city 武汉 --pretty             # 7 天预报
+node $QW weather now --city 武汉 --pretty            # 实时天气
+node $QW air current --city 武汉 --pretty            # 空气质量
+node $QW astro both --city 武汉 --pretty             # 日出日落 / 月相
+node $QW indices 1d --city 武汉 --type 2,3,5 --pretty # 洗车/穿衣/紫外线
+node $QW geo lookup --city 武汉 --list                # 城市候选（重名时先查这个）
 node $QW usage                                       # 近 24h 请求量
 ```
 
@@ -115,100 +115,96 @@ node $QW usage                                       # 近 24h 请求量
 ### `combined` —— 一条命令拉全
 
 ```bash
-node $QW combined --city 长沙 --pretty --hours 3
+node $QW combined --city 武汉 --pretty --hours 3
 ```
 
 ```
-📍 长沙 · 湖南省 · 2026-10-13 15:23
+📍 武汉 · 湖北省 · 2026-10-13 15:30
 
-🌡️  ☀️ 晴 28.1°C  体感 25.5°C
-💨 西北风 4级  阵风 13.4m/s  湿度 53%  能见度 15km  气压 1018.4hPa  露点 17.4°C  云量 3%  UV 2 弱
-🫁 AQI 102 · 轻度污染  首要污染物: PM 2.5
+🌡️  ☀️ 晴 26.4°C  体感 22.8°C
+💨 东北风 4级  阵风 13.1m/s  湿度 44%  能见度 28.1km  气压 1019.7hPa  露点 13.1°C  云量 11%  UV 2 弱
+🫁 AQI 51 · 良  首要污染物: PM 2.5
 
 🌧️ 未来两小时无降水
 
 🌅 天文:
-   日出 06:27   日落 18:01
-   月出 08:46   月落 19:22   🌒 蛾眉月 (4%)
+   日出 06:23   日落 17:54
+   月出 08:46   月落 19:11   🌒 蛾眉月 (4%)
 
 🕐 未来 3 小时:
 | 时间 | 天气 | 温度 | 风 | 💧降水 | 湿度 |
 |------|------|------|----|--------|------|
-| 10-13 16:00 | ☀️ 晴 | 27°C | 北风 3级 | 0 | 50% |
-| 10-13 17:00 | ☀️ 晴 | 26.4°C | 北风 2级 | 0 | 52% |
-| 10-13 18:00 | 🌤️ 少云 | 25.7°C | 北风 2级 | 0 | 53% |
+| 10-13 16:00 | 🌤️ 少云 | 27°C | 北风 2级 | 0 | 45% |
+| 10-13 17:00 | ☀️ 晴 | 26.4°C | 东北风 2级 | 0 | 45% |
+| 10-13 18:00 | ☀️ 晴 | 24.7°C | 北风 1级 | 0 | 49% |
 
-⚠️  生效预警 (1 条):
-   · [霾|moderate|yellow] 长沙市气象局发布霾黄色预警信号
-     长沙市气象台 | 2026-10-13 08:08 → 2026-10-14 08:08
-     指南: 1. 空气质量明显降低，人员需适当防护。
-2. 一般人群适量减少户外活动，儿童、老人及易感人群应减少外出。
+✅ 当前无生效预警
 
-⏱️ 查询耗时 386ms
+⏱️ 查询耗时 404ms
 ```
 
 ### `weather 7d` —— 多天预报
 
 ```bash
-node $QW weather 7d --city 长沙 --pretty
+node $QW weather 7d --city 武汉 --pretty
 ```
 
 ```
-📍 长沙 · 湖南省
+📍 武汉 · 湖北省
 📅 未来 7 天:
 | 日期 | 天气 | 气温 | 风 | 💧降水 | 湿度 | ☀️UV | 🌙月相 |
 |------|------|------|----|--------|------|----|----|
-| 10-13 周二 | 🌤️ 少云→ 少云 | 28.2° / 21.6° | 北风 3级 | 0% | 62% | **6** 强 | 🌒 蛾眉月 |
-| 10-14 周三 | 🌦️ 小雨→ 小雨 | 25.6° / 19.6° | 西南风 1级 | 18% | 64% | **4** 中等 | 🌒 蛾眉月 |
-| 10-15 周四 | 🌧️ 强雷阵雨→ 强雷阵雨 | 26.3° / 20.5° | 东风 2级 | **100%** | 69% | **3** 中等 | 🌒 蛾眉月 |
-| 10-16 周五 | 🌦️ 小雨→ 少云 | 28.7° / 20.4° | 西南风 0级 | **77%** | 77% | **4** 中等 | 🌒 蛾眉月 |
-| 10-17 周六 | 🌤️ 少云→ 少云 | 32.1° / 23.6° | 南风 3级 | 37% | 64% | **8** 很强 | 🌒 蛾眉月 |
-| 10-18 周日 | 🌥️ 多云→ 晴间多云 | 25.6° / 18.9° | 西北风 3级 | 57% | 77% | **2** 弱 | 🌒 蛾眉月 |
-| 10-19 周一 | 🌥️ 多云→ 晴间多云 | 24.1° / 16.6° | 北风 2级 | 3% | 77% | **4** 中等 | 🌓 上弦月 |
+| 10-13 周二 | 🌤️ 少云→ 晴 | 27° / 19.6° | 东北风 2级 | 0% | 57% | **6** 强 | 🌒 蛾眉月 |
+| 10-14 周三 | 🌤️ 少云→ 小雨 | 27° / 16.9° | 东南风 2级 | 3% | 50% | **6** 强 | 🌒 蛾眉月 |
+| 10-15 周四 | 🌧️ 大雨→ 中雨 | 20.1° / 17.6° | 东风 2级 | **100%** | 90% | **1** 弱 | 🌒 蛾眉月 |
+| 10-16 周五 | ⛈️ 阵雨→ 小雨 | 24.4° / 19° | 东风 2级 | **93%** | 85% | **3** 中等 | 🌒 蛾眉月 |
+| 10-17 周六 | 🌤️ 少云→ 阵雨 | 31.4° / 21.6° | 东南风 2级 | **83%** | 69% | **2** 弱 | 🌒 蛾眉月 |
+| 10-18 周日 | 🌦️ 小雨→ 中雨 | 22.2° / 17.6° | 北风 3级 | **90%** | 78% | **0** 弱 | 🌒 蛾眉月 |
+| 10-19 周一 | 🌥️ 多云→ 薄雾 | 24.2° / 16.9° | 西北风 1级 | **80%** | 71% | **5** 中等 | 🌓 上弦月 |
 
 🌅 天文:
-   日出 06:27   日落 18:01
+   日出 06:23   日落 17:54
 ```
 
 ### `air current` —— 空气质量
 
 ```bash
-node $QW air current --city 长沙 --pretty
+node $QW air current --city 武汉 --pretty
 ```
 
 ```
-🫁 AQI 102 · 轻度污染  首要污染物: PM 2.5
+🫁 AQI 51 · 良  首要污染物: PM 2.5
 ```
 
 ### `astro both` —— 天文
 
 ```bash
-node $QW astro both --city 长沙 --pretty
+node $QW astro both --city 武汉 --pretty
 ```
 
 ```
 🌅 天文:
-   日出 06:27   日落 18:01
-   月出 08:46   月落 19:22   🌒 蛾眉月 (4%)
+   日出 06:23   日落 17:54
+   月出 08:46   月落 19:11   🌒 蛾眉月 (4%)
 ```
 
 ### `indices` —— 生活指数
 
 ```bash
-node $QW indices 1d --city 长沙 --type 2,3,5 --pretty
+node $QW indices 1d --city 武汉 --type 2,3,5 --pretty
 ```
 
 ```
 🧭 生活指数:
-   · 洗车指数 3 较不宜 — 较不宜洗车，明天可能有雨，擦拭一新的汽车可能无法保持太长时间。
+   · 洗车指数 2 较适宜 — 较适宜洗车，未来一天无雨，风力较小，擦洗一新的汽车至少能保持一天。
    · 穿衣指数 6 热 — 天气热，建议着短裙、短裤、短薄外套、T恤等夏季服装。
-   · 紫外线指数 3 中等 — 属中等强度紫外线辐射天气，外出时建议涂擦SPF高于15、PA+的防晒护肤品，戴帽子、太阳镜。
+   · 紫外线指数 2 弱 — 紫外线强度较弱，建议出门前涂擦SPF在12-15之间、PA+的防晒护肤品。
 ```
 
 ### `geo lookup --list` —— 重名城市查候选
 
 ```bash
-node $QW geo lookup --city 长沙 --list
+node $QW geo lookup --city 武汉 --list
 ```
 
 ```json
@@ -216,13 +212,13 @@ node $QW geo lookup --city 长沙 --list
   "action": "lookup",
   "candidates": [
     {
-      "id": "101250101",
-      "name": "长沙",
-      "adm1": "湖南省",
-      "adm2": "长沙",
-      "lat": "28.23",
-      "lon": "112.94",
-      "fxLink": "https://www.qweather.com/weather/changsha-101250101.html"
+      "id": "101200101",
+      "name": "武汉",
+      "adm1": "湖北省",
+      "adm2": "武汉",
+      "lat": "30.58",
+      "lon": "114.30",
+      "fxLink": "https://www.qweather.com/weather/wuhan-101200101.html"
     }
   ]
 }
@@ -241,7 +237,7 @@ node $QW geo lookup --city 长沙 --list
 ### `--normalize` 样例
 
 ```bash
-node $QW weather now --city 长沙 --normalize
+node $QW weather now --city 武汉 --normalize
 ```
 
 ```json
@@ -251,19 +247,19 @@ node $QW weather now --city 长沙 --normalize
     "time": null,
     "text": "晴",
     "code": "100",
-    "temp": 28.1,
-    "feelsLike": 25.5,
-    "humidity": 53,
-    "cloud": 3,
-    "pressure": 1018.4,
-    "visibilityKm": 15,
-    "dew": 17.4,
+    "temp": 26.4,
+    "feelsLike": 22.8,
+    "humidity": 44,
+    "cloud": 11,
+    "pressure": 1019.7,
+    "visibilityKm": 28.1,
+    "dew": 13.1,
     "uvIndex": 2,
-    "windDeg": 316,
-    "windDir": "西北风",
+    "windDeg": 43,
+    "windDir": "东北风",
     "windScale": 4,
     "windSpeed": 7.7,
-    "gust": 13.4,
+    "gust": 13.1,
     "precip": {
       "amount": 0,
       "intensity": 0,

@@ -514,9 +514,9 @@ function usage() {
   --lang zh|en     --local-time true|false     --pretty（人类可读）  --normalize（归一结构）
 
 示例
-  qweather combined --city 长沙县 --pretty
-  qweather combined --city 长沙 --type 7d --days 7 --astro --pretty
-  qweather astro both --city 长沙 --pretty
+  qweather combined --city 武汉 --pretty
+  qweather combined --city 武汉 --type 7d --days 7 --astro --pretty
+  qweather astro both --city 武汉 --pretty
 `);
 }
 
